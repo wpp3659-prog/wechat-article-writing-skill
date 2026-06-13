@@ -1,4 +1,4 @@
 interface:
-  display_name: "公众号文章写作"
-  short_description: "根据主题自动生成完整中文公众号文章草稿与自检报告。"
-  default_prompt: "写一篇公众号文章，主题是："
+  display_name: "公众号选题与写作"
+  short_description: "策划公众号选题、大纲与完整中文文章，并提供热度验证和质量自检。"
+  default_prompt: "帮我策划一组公众号选题，赛道是："

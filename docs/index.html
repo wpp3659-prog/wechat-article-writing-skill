@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>公众号文章写作 Skill</title>
+  <title>公众号选题与写作 Skill</title>
   <style>
     :root {
       color-scheme: light;
@@ -385,6 +385,17 @@
         grid-template-columns: 1fr;
       }
 
+      .styles {
+        grid-template-columns: 1fr;
+        overflow-x: visible;
+      }
+
+      .terminal,
+      .terminal code {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
       .section-title {
         display: block;
       }
@@ -403,9 +414,9 @@
   <main class="shell">
     <header class="hero">
       <div>
-        <p class="eyebrow">Codex Skill · 微信公众号写作</p>
-        <h1>把一个主题，写成一篇能发布的公众号文章。</h1>
-        <p class="lead">这个 Skill 专注写作：结构、字数、表达风格、AI 痕迹审稿、下一句可预测性检查、100 分质量门禁，都在一条流程里完成。</p>
+        <p class="eyebrow">Codex Skill · 微信公众号选题与写作</p>
+        <h1>从一个赛道，找到值得写的选题，再写成文章。</h1>
+        <p class="lead">这个 Skill 把公众号内容生产拆成选题策划、热度验证、大纲规划和完整写作：先判断什么值得写，再把它写到能发布。</p>
         <div class="actions">
           <a class="button" href="https://github.com/wpp3659-prog/wechat-article-writing-skill">GitHub 仓库</a>
           <a class="button secondary" href="../SKILL.md">查看 SKILL.md</a>
@@ -418,7 +429,7 @@
           <span class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
         </div>
         <div class="mock">
-          <div class="prompt">$wechat-article-writing 写一篇公众号文章，主题是：2026 年下半年 AI 趋势预测，字数 1500。</div>
+          <div class="prompt">$wechat-article-writing 我做职场成长公众号，帮我策划 15 个选题，并推荐最值得写的 3 个。</div>
           <div class="result" aria-hidden="true">
             <span class="line"></span>
             <span class="line"></span>
@@ -426,8 +437,8 @@
             <span class="line"></span>
           </div>
           <div class="score">
-            <div><strong>1500</strong><span>字数控制</span></div>
-            <div><strong>7</strong><span>表达风格</span></div>
+            <div><strong>15</strong><span>选题池</span></div>
+            <div><strong>Top 3</strong><span>推荐选题</span></div>
             <div><strong>90+</strong><span>质量门禁</span></div>
           </div>
         </div>
@@ -437,52 +448,52 @@
     <section>
       <div class="section-title">
         <h2>它解决什么</h2>
-        <p>不是再做一个泛泛的写作提示词，而是把公众号文章从主题到终稿拆成稳定流程。</p>
+        <p>不是再做一个泛泛的写作提示词，而是把公众号从选题判断到终稿交付拆成稳定流程。</p>
       </div>
       <div class="grid">
         <article class="card">
+          <span class="tag">选题</span>
+          <h3>通用策划</h3>
+          <p>不绑定单一赛道，从读者、痛点、利益、场景、趋势、反常识和案例里生成可写选题。</p>
+        </article>
+        <article class="card">
+          <span class="tag">热度</span>
+          <h3>判断是否值得追</h3>
+          <p>当用户问当下热门或热搜话题时，用公开信息验证热度、内容空位和公众号适配度。</p>
+        </article>
+        <article class="card">
           <span class="tag">写作</span>
           <h3>完整成文</h3>
-          <p>根据一个主题生成标题、摘要、正文、金句和留言引导，适合公众号长文和微信推文正文。</p>
-        </article>
-        <article class="card">
-          <span class="tag">控制</span>
-          <h3>字数可控</h3>
-          <p>支持精确字数、范围字数、短文、正常篇幅和长文，默认按中文公众号阅读习惯处理。</p>
-        </article>
-        <article class="card">
-          <span class="tag">质量</span>
-          <h3>发布前自检</h3>
-          <p>用 100 分评分门禁检查选题、开头、结构、内容价值、公众号语感、标题和收尾。</p>
+          <p>选题确认后生成标题、摘要、正文、金句和留言引导，并进入 AI 痕迹与质量门禁。</p>
         </article>
       </div>
     </section>
 
     <section>
       <div class="section-title">
-        <h2>写作流程</h2>
-        <p>每篇文章都会先选结构和表达方式，再写作，再进入 AI 痕迹与质量门禁。</p>
+        <h2>内容流程</h2>
+        <p>用户还没确定选题时先停在策划层；选题确认后，再进入完整写作和审稿。</p>
       </div>
       <div class="flow">
         <article class="step">
-          <h3>理解主题</h3>
-          <p>识别读者、目的、语气、字数和文章类型。</p>
+          <h3>定位读者</h3>
+          <p>识别赛道、目标读者、账号位置和内容目的。</p>
         </article>
         <article class="step">
-          <h3>选择结构</h3>
-          <p>观点、干货、故事、行业分析、产品转化等结构自动路由。</p>
+          <h3>生成选题</h3>
+          <p>从痛点、利益、场景、趋势、反常识等角度生成候选池。</p>
         </article>
         <article class="step">
-          <h3>匹配风格</h3>
-          <p>从 7 种公众号表达方式里选主风格，避免万能公众号腔。</p>
+          <h3>验证热度</h3>
+          <p>需要追热点时，查看公开信号、跨平台讨论和内容空位。</p>
+        </article>
+        <article class="step">
+          <h3>搭建大纲</h3>
+          <p>推荐主选题，给出写作角度、标题方向和文章结构。</p>
         </article>
         <article class="step">
           <h3>写作审稿</h3>
-          <p>完成正文后检查 AI 痕迹、过度顺滑和下一句可预测性。</p>
-        </article>
-        <article class="step">
-          <h3>质量门禁</h3>
-          <p>低于 90 分或触发硬失败项时，先修改再交稿。</p>
+          <p>确认后成文，并检查 AI 痕迹、语感和 100 分质量门禁。</p>
         </article>
       </div>
     </section>
@@ -510,6 +521,8 @@
       </div>
       <pre class="terminal"><code>git clone https://github.com/wpp3659-prog/wechat-article-writing-skill.git "$env:USERPROFILE\.codex\skills\wechat-article-writing"
 
+$wechat-article-writing 我做女性成长号，帮我策划一组近期适合写的选题
+
 $wechat-article-writing 写一篇公众号文章
 主题：AI 时代普通人怎么保住竞争力
 字数：1800 字
@@ -518,7 +531,7 @@ $wechat-article-writing 写一篇公众号文章
   </main>
 
   <footer class="shell">
-    <p>AI 痕迹审稿用于提升原创编辑质感和真人写作感，不承诺绕过任何检测器。MIT License.</p>
+    <p>热度验证只使用公开和允许的信息；AI 痕迹审稿用于提升原创编辑质感和真人写作感，不承诺绕过任何检测器。MIT License.</p>
   </footer>
 </body>
 </html>

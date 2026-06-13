@@ -1,15 +1,23 @@
 ---
 name: wechat-article-writing
-description: Writes complete Chinese WeChat Official Account articles from a topic, opinion, outline, note, draft, or source material. Use when the user asks to write, draft, expand, polish, rewrite, or generate a 公众号文章, 微信公众号推文, 微信文章, 推文正文, 自媒体长文, or public-account article. Supports controllable word count, reader positioning, article structure selection, title generation, human-like Chinese prose, quality scoring, and revision until publish-ready. This skill only handles writing and editing, not publishing, API upload, image generation, or WeChat draft submission.
+description: Plans topics, validates angles, builds outlines, and writes complete Chinese WeChat Official Account articles. Use when the user asks for 公众号选题, 内容策划, 选题角度, 热点选题, 热搜话题, 赛道定位, 公众号大纲, title ideas, writing, drafting, polishing, rewriting, expanding, or generating 微信公众号文章, 微信推文正文, 自媒体长文, or public-account articles. Supports universal topic planning across industries, heat checks for current topics, topic scoring, outline planning, controllable word count, article structure routing, title generation, human-like prose, quality scoring, and revision until publish-ready. This skill only handles content planning, writing, and editing, not publishing, API upload, image generation, crawler development, platform automation, or WeChat draft submission.
 ---
 
 # WeChat Article Writing
 
-Write complete Chinese WeChat Official Account articles from the user's topic, idea, outline, draft, or source material. Focus on article quality only. Do not publish, upload, generate images, or call WeChat APIs.
+Plan topics, validate angles, build outlines, and write complete Chinese WeChat Official Account articles from the user's domain, idea, topic, outline, draft, or source material. Focus on content strategy and article quality only. Do not publish, upload, generate images, build crawlers, automate platform accounts, or call WeChat APIs.
 
 ## Operating Mode
 
-Produce a complete article in one pass when the user gives a usable topic. Ask at most one clarification when the topic is too vague to write responsibly, such as "写一篇公众号文章" with no domain, angle, reader, or material.
+Route the request before writing:
+
+- Topic Planning Mode: use when the user asks for 选题, 选题角度, 内容策划, 赛道, 栏目, 内容支柱, 热点选题, 热搜话题, 近期热门, or "这个话题能不能写". Read `references/topic-planning.md`.
+- Heat Check Mode: use with Topic Planning Mode when the request depends on current popularity, recent events, hot searches, platform trends, or time-sensitive public discussion. Read `references/heat-check.md` and use web search with source dates.
+- Outline Mode: use when the user asks only for 大纲, 框架, 结构, or 写作思路. Plan the article, but do not draft the full正文 unless asked.
+- Writing Mode: use when the user asks to write, draft, expand into a full article, or gives a confirmed topic and asks for a finished公众号文章.
+- Editing Mode: use when the user asks to polish, rewrite, shorten, expand, review, or improve existing text.
+
+Produce a complete article in one pass only when the user gives a usable topic and asks for writing. Ask at most one clarification when the topic is too vague to act responsibly, such as "写一篇公众号文章" with no domain, angle, reader, or material.
 
 Infer reasonable defaults instead of asking setup questions:
 
@@ -20,7 +28,54 @@ Infer reasonable defaults instead of asking setup questions:
 - `target_word_count`: default to normal length.
 - `article_type`: infer from the topic.
 
-If the user requests only a title, outline, rewrite, polish, shortening, or expansion, perform only that writing task.
+If the user requests only topic ideas, titles, an outline, rewrite, polish, shortening, or expansion, perform only that task.
+
+When the user is still choosing a topic, stop at topic recommendation and outline. Do not write the full article unless the user explicitly asks to continue.
+
+## Topic Planning
+
+Use a universal topic planning method, not a single-industry template. If the user provides a domain, go deep in that domain. If the user does not provide a domain, infer likely content pillars from the material or ask one concise clarification.
+
+Read `references/topic-planning.md` when generating or judging topics. Use the angle library there to create topics from:
+
+- audience group
+- pain point
+- benefit
+- scenario
+- trend
+- counterintuitive judgment
+- misconception or pitfall
+- method
+- case or story
+- controversy
+- series potential
+
+Read `references/topic-evaluation-rubric.md` before ranking topics. Recommend topics by balancing reader relevance, pain or benefit, novelty, evidence, WeChat suitability, account fit, title potential, and heat when relevant.
+
+For topic planning requests, output:
+
+```markdown
+## 账号/赛道判断
+## 候选选题池
+## Top 3 推荐选题
+## 推荐主选题
+## 写作角度
+## 文章大纲
+## 标题方向
+## 风险与补充材料
+## 下一步建议
+```
+
+If the request asks for hot topics, recent trends, or heat validation, include:
+
+```markdown
+## 热度验证
+- 热度判断：
+- 热度评分：
+- 依据与来源：
+- 内容空位：
+- 是否建议追：
+```
 
 ## Word Count Control
 
@@ -38,11 +93,13 @@ If the requested word count conflicts with the requested depth, prioritize the u
 
 ## Source And Fact Rules
 
-Use web search before writing when the article depends on recent facts, statistics, news, laws, prices, product releases, public events, or any claim likely to have changed. Use primary or reputable sources and integrate findings naturally.
+Use web search before planning or writing when the article depends on recent facts, statistics, news, laws, prices, product releases, public events, platform trends, hot searches, or any claim likely to have changed. Use primary or reputable sources and integrate findings naturally.
 
 For evergreen opinion, reflection, method, or user-provided material, write from the user's context and common knowledge.
 
 Never invent specific data, named cases, expert quotes, research findings, dates, source attributions, or user experiences. If a useful concrete detail is missing, use a clearly framed hypothetical scenario or add an editor note for the user to replace with a real detail.
+
+For heat checks, do not build scrapers, bypass login, automate accounts, evade rate limits, or claim hidden platform data. Use web search, official trend tools, public pages, reputable media, or user-provided analytics.
 
 ## Article Type Routing
 
@@ -90,6 +147,19 @@ Writing Progress:
 - [ ] Step 8: Score with the quality gate
 - [ ] Step 9: Revise until publish-ready or revision limit is reached
 - [ ] Step 10: Output final article and concise quality report
+```
+
+If the request starts in Topic Planning Mode, complete this internal checklist first:
+
+```text
+Topic Planning Progress:
+- [ ] Step 1: Identify domain, target reader, account position, and content goal
+- [ ] Step 2: Generate candidate topics from multiple angle sources
+- [ ] Step 3: Run heat check when the topic is time-sensitive or trend-driven
+- [ ] Step 4: Score and rank topics with the topic rubric
+- [ ] Step 5: Recommend the strongest topic and explain the tradeoffs
+- [ ] Step 6: Build a usable article outline for the selected or recommended topic
+- [ ] Step 7: Stop before full drafting unless the user asks to write the article
 ```
 
 ## Writing Requirements
@@ -199,6 +269,9 @@ If the user asks for only the正文, title, outline, rewrite, polish, or review,
 
 ## Reference Files
 
+- `references/topic-planning.md`: universal topic planning workflow, angle library, and domain routing.
+- `references/topic-evaluation-rubric.md`: topic scoring rules, recommendation thresholds, and hard-fail checks.
+- `references/heat-check.md`: current-topic heat validation workflow and source rules.
 - `references/article-frameworks.md`: article structures and when to use them.
 - `references/expression-styles.md`: public-account voice modes and style routing.
 - `references/title-patterns.md`: title styles and selection rules.
